@@ -27,7 +27,7 @@ To obtain the `rrweb_impl.js` code, follow these steps:
 1. **Clone the Repository**: Start by cloning the GitHub repository where `rrweb_impl.js` is located. Use the following command:
 
    ```bash
-   git clone https://github.com/aakash88888/Documentation/blob/main/rrweb_impl.js
+   git clone https://github.com/aakash88888/Documentation/blob/main/frontend/js/rrweb_impl.js
    ```
 2. **Navigate to the Directory** : 
 
@@ -59,7 +59,7 @@ Alternatively, you can view or download the file directly from the GitHub web in
 
   To set up the backend for handling rrweb data, download and configure the backend code from the following repository:
     
-  [Backend Repository link](https://github.com/aakash88888/CloudExpress_Backend)
+  [Backend Repository link](https://github.com/aakash88888/Documentation/tree/main/backend))
 
 ### 4. Testing
 
