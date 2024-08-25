@@ -59,7 +59,7 @@ Alternatively, you can view or download the file directly from the GitHub web in
 
   To set up the backend for handling rrweb data, download and configure the backend code from the following repository:
     
-  [Backend Repository link](https://github.com/aakash88888/Documentation/tree/main/backend))
+  [Backend Repository link](https://github.com/aakash88888/Documentation/tree/main/backend)
 
 ### 4. Testing
 
