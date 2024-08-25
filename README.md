@@ -93,31 +93,7 @@ Test the integration by interacting with your website and verifying that session
 The `rrweb_impl.js` file includes several key functions and configurations for handling session recording and interacting with the backend. Here’s a breakdown of each function and its purpose:
 
 
-#### 1. `window.cronyWidget(customConfig)`
 
-**Purpose**: Initializes and configures `rrweb` to record user interactions and periodically send recorded events to the backend.
-
-**Parameters**:
-- `customConfig`: An object that may contain configuration details such as `token` and `apiServer`. 
-
-**Functionality**:
-- **Sets up `rrweb`**: Configures `rrweb` to start recording user interactions on the page.
-- **Stores recorded events**: Events are accumulated in the `events` array.
-- **Periodically sends recorded events**: Every 10 seconds, the `saveEvents()` function is called to send the recorded events to the backend.
-- **Logs events and errors**: Outputs recorded events and any errors encountered during the process to the console for debugging.
-
-#### 2. `deleteFolder()`
-
-**Purpose**: Sends a request to delete a folder on the backend server.
-
-**Functionality**:
-- Makes a `DELETE` request to `${serverURL}/api/delete-folder`.
-- If the request is successful, updates the UI by calling `fetchFolderList()` (assumed to be another function in your code).
-- Logs any errors encountered during the request to the console.
-
-#### 3. `window.onload`
-
-**Purpose**: Executes the `deleteFolder()` function when the window loads.
 
 
 
