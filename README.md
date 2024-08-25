@@ -92,6 +92,79 @@ Test the integration by interacting with your website and verifying that session
 
 The `rrweb_impl.js` file includes several key functions and configurations for handling session recording and interacting with the backend. Here’s a breakdown of each function and its purpose:
 
+### Recording Events with `rrweb`
+
+**Purpose**: To capture user interactions and record them for later use.
+
+**Functionality**:
+- **`var events = [];`**: Initializes an empty array named `events` to store recorded user interactions.
+- **`rrweb.record({ ... });`**: Configures `rrweb` to start recording user interactions on the page.
+- **`emit(event)`**: A callback function provided to `rrweb.record` that is called every time an event is recorded.
+  - **`console.log(event);`**: Logs the recorded event to the console for debugging purposes.
+  - **`events.push(event);`**: Adds the recorded event to the `events` array for later processing or sending to a backend server.
+
+**Code**:
+```javascript
+var events = [];
+
+rrweb.record({
+  emit(event) {
+    console.log(event);
+    events.push(event);
+  },
+});
+```
+
+### Saving Recorded Events with `saveEvents()`
+
+**Purpose**: To periodically send recorded user interaction events to the backend server for storage or further processing.
+
+**Functionality**:
+- **`async function saveEvents()`**: An asynchronous function that handles the process of sending recorded events to the backend server.
+- **`const body = JSON.stringify(events);`**: Converts the `events` array into a JSON string to be sent in the HTTP request body.
+- **`events = [];`**: Clears the `events` array after converting it to JSON, ensuring that only new events are recorded in subsequent cycles.
+- **`await fetch(${serverURL}/api/last-record, { ... });`**: Sends a `POST` request to `${serverURL}/api/last-record` with the events data.
+  - **`method: 'POST'`**: Specifies that the request method is `POST`.
+  - **`headers: { 'Content-Type': 'application/json' }`**: Sets the `Content-Type` header to `application/json`, indicating that the request body contains JSON data.
+  - **`body: body`**: Includes the JSON string of events in the request body.
+- **`if (response.ok) { ... }`**: Checks if the response status indicates success (status code in the range 200-299).
+  - **`console.log('Event sent successfully', response);`**: Logs a success message if the events were sent successfully.
+  - **`console.error('Failed to send event:', response.statusText);`**: Logs an error message if the request failed.
+- **`catch (error) { ... }`**: Catches and logs any errors that occur during the `fetch` request.
+
+**Periodic Execution**:
+- **`setInterval(saveEvents, 10 * 1000);`**: Calls the `saveEvents` function every 10 seconds to periodically send recorded events to the backend server.
+
+**Code**:
+```javascript
+async function saveEvents() {
+  try {
+    const body = JSON.stringify(events);
+    events = []; // Clear events after sending
+
+    const response = await fetch(`${serverURL}/api/last-record`, 
+      {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: body,
+    });
+
+    if (response.ok) {
+      console.log('Event sent successfully', response);
+    } else {
+      console.error('Failed to send event:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Error sending event:', error);
+  }
+}
+
+// Save events periodically
+setInterval(saveEvents, 10 * 1000);
+```
+
 
 
 
