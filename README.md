@@ -166,6 +166,119 @@ setInterval(saveEvents, 10 * 1000);
 ```
 
 
+# How to Implement RL Algorithm on Our Website?
+
+## Overview
+
+This document provides a step-by-step guide on implementing a Reinforcement Learning (RL) algorithm to dynamically apply styles to your website. The RL algorithm fetches style configurations from the backend server and applies them to the page elements when the page is refreshed.
+
+## Prerequisites
+
+1. **Backend Server**: Ensure you have a backend server that provides a `/random-style` endpoint returning JSON with style properties. For example:
+   ```json
+   {
+     "backgroundColor": "#ffffff",
+     "backgroundImage": "url('image.jpg')",
+     "backgroundPosition": "center",
+     "backgroundRepeat": "no-repeat",
+     "backgroundSize": "cover",
+     "fontSize": "16px",
+     "color": "#000000",
+     "fontFamily": "Arial, sans-serif",
+     "fontWeight": "bold",
+     "fontVariant": "small-caps",
+     "lineHeight": "1.5",
+     "letterSpacing": "0.5px",
+     "wordSpacing": "1px",
+     "textAlign": "center",
+     "textDecoration": "underline",
+     "textTransform": "uppercase"
+   }
+
+2. **Implementation Steps**
+
+   #### 1. Create or Update JavaScript File
+
+   Ensure you have a JavaScript file that will handle the fetching and applying of styles. The script should be included in your HTML file or linked externally.
+
+   ```javascript
+   window.onload = function () {
+     fetchAndApplyStyles(); // Function to fetch and apply styles
+   };
+
+   async function fetchAndApplyStyles() {
+
+    const PORT = 3001;
+    // Use your backend URL
+    const serverURL = 'https://cloudexpress-backend.onrender.com';
+
+    try {
+        const response = await fetch(`${serverURL}/random-style`);
+        const data = await response.json();
+        console.log(data);
+
+        // Select page elements
+        const elements = document.querySelectorAll('.menu__item-title');
+        const body = document.querySelector('body');
+
+        // Apply styles to body
+        body.style.backgroundColor = data['backgroundColor'];
+        body.style.backgroundImage = data['backgroundImage'];
+        body.style.backgroundPosition = data['backgroundPosition'];
+        body.style.backgroundRepeat = data['backgroundRepeat'];
+        body.style.backgroundSize = data['backgroundSize'];
+
+        // Apply styles to selected elements
+        elements.forEach(element => {
+            element.style.color = data['color'];
+            element.style.fontFamily = data['fontFamily'];
+            element.style.fontWeight = data['fontWeight'];
+            element.style.fontVariant = data['fontVariant'];
+            element.style.letterSpacing = data['letterSpacing'];
+            element.style.wordSpacing = data['wordSpacing'];
+            element.style.textAlign = data['textAlign'];
+            element.style.textDecoration = data['textDecoration'];
+            element.style.textTransform = data['textTransform'];
+        });
+
+    } catch (error) {
+        console.error('Error fetching or applying styles:', error);
+    }
+   }
+
+  #### 2. Integrate JavaScript with HTML
+
+  Ensure the JavaScript file is included in your HTML file, preferably at the end of the `<body>` tag for better performance.
+
+  #### 3. Testing
+
+  - **Start Backend Server**: Ensure your backend server is running and accessible.
+  - **Open Website**: Refresh the page and verify that styles are applied as expected.
+
+  #### Troubleshooting
+
+  - **Fetch Errors**: Ensure your backend server is running and the URL is correct.
+  - **Style Application Issues**: Verify that the JSON structure matches the expected format and that CSS properties are applied correctly.
+
+### Explanation of the Algorithm
+
+- **`window.onload` Event:**
+  - Triggered when the entire page has fully loaded. It calls the `fetchAndApplyStyles()` function to fetch style data from the backend and apply it to the webpage.
+
+- **`fetchAndApplyStyles` Function:**
+  - An asynchronous function that:
+  
+  - **Sets Up the Server URL:**
+    - Defines the `serverURL` pointing to the backend (`https://cloudexpress-backend.onrender.com`) that provides style properties as a JSON object.
+
+  - **Fetches Data from the Server:**
+    - Sends a GET request to the `/random-style` endpoint. The response, containing CSS properties, is parsed into a `data` object.
+
+  - **Applies Styles to Webpage Elements:**
+    - Selects elements like `.menu__item-title`, `a` tags, and `body`. Styles from `data` are applied, such as background properties to the body and various text styles to the `.menu__item-title` elements. Some 
+      properties like `fontSize`, `height`, and `width` are optional and can be uncommented if needed.
+
+
 
 
 
