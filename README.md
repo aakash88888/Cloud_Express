@@ -260,7 +260,7 @@ This document provides a step-by-step guide on implementing a Reinforcement Lear
   - **Fetch Errors**: Ensure your backend server is running and the URL is correct.
   - **Style Application Issues**: Verify that the JSON structure matches the expected format and that CSS properties are applied correctly.
 
-### Explanation of the Algorithm
+### Explanation of the RL Algorithm
 
 - **`window.onload` Event:**
   - Triggered when the entire page has fully loaded. It calls the `fetchAndApplyStyles()` function to fetch style data from the backend and apply it to the webpage.
