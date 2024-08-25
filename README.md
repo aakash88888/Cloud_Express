@@ -60,6 +60,7 @@ Alternatively, you can view or download the file directly from the GitHub web in
   To set up the backend for handling rrweb data, download and configure the backend code from the following repository:
     
   [Backend Repository link](https://github.com/aakash88888/Cloud_Express/tree/main/backend)
+  go to that directory and run buid command: npm install
 
 ### 4. Testing
 
