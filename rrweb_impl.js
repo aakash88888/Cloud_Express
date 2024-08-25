@@ -6,7 +6,7 @@ cronyScript.type = "text/javascript";
 // document.getElementsByTagName("HEAD")[0].appendChild(cronyScript);
 
 const PORT = 3001;
-// const serverURL = `http://localhost:${PORT}`
+// const serverURL = http://localhost:${PORT}
 
 const serverURL = 'https://cloudexpress-backend.onrender.com'   //Final backend
 
@@ -15,9 +15,9 @@ let sessionID;
 // Fetch max interval value from the backend
 async function fetchMaxInterval() {
   try {
-    const response = await fetch(`${serverURL}/api/max-interval`);
+    const response = await fetch(${serverURL}/api/max-interval);
     if (!response.ok) {
-      throw new Error(`Error fetching session ID: ${response.statusText}`); // Handle non-200 responses
+      throw new Error(Error fetching session ID: ${response.statusText}); // Handle non-200 responses
     }
     const data = await response.json();
     sessionID = data.maxInterval;
@@ -52,7 +52,7 @@ window.cronyWidget = function (customConfig) {
       const body = JSON.stringify(events);
       events = []; // Clear events after sending
   
-      const response = await fetch(`${serverURL}/api/last-record`, 
+      const response = await fetch(${serverURL}/api/last-record, 
         {
         method: 'POST',
         headers: {
@@ -78,7 +78,7 @@ window.cronyWidget = function (customConfig) {
 
 async function deleteFolder() {
   try {
-    const response = await fetch(`${serverURL}/api/delete-folder`, {
+    const response = await fetch(${serverURL}/api/delete-folder, {
       method: 'DELETE'
     });
 
