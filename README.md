@@ -92,16 +92,8 @@ Test the integration by interacting with your website and verifying that session
 
 The `rrweb_impl.js` file includes several key functions and configurations for handling session recording and interacting with the backend. Here’s a breakdown of each function and its purpose:
 
-#### 1. `fetchMaxInterval()`
 
-**Purpose**: Fetches the maximum interval value from the backend server, which is used to manage the recording session.
-
-**Usage**:
-- This function makes a `GET` request to the endpoint `${serverURL}/api/max-interval`.
-- It processes the response to retrieve the `maxInterval` value and assigns it to the `sessionID` variable.
-- Errors are logged if the request fails.
-
-#### 2. `window.cronyWidget(customConfig)`
+#### 1. `window.cronyWidget(customConfig)`
 
 **Purpose**: Initializes and configures `rrweb` to record user interactions and periodically send recorded events to the backend.
 
@@ -114,7 +106,7 @@ The `rrweb_impl.js` file includes several key functions and configurations for h
 - **Periodically sends recorded events**: Every 10 seconds, the `saveEvents()` function is called to send the recorded events to the backend.
 - **Logs events and errors**: Outputs recorded events and any errors encountered during the process to the console for debugging.
 
-#### 3. `deleteFolder()`
+#### 2. `deleteFolder()`
 
 **Purpose**: Sends a request to delete a folder on the backend server.
 
@@ -123,7 +115,7 @@ The `rrweb_impl.js` file includes several key functions and configurations for h
 - If the request is successful, updates the UI by calling `fetchFolderList()` (assumed to be another function in your code).
 - Logs any errors encountered during the request to the console.
 
-#### 4. `window.onload`
+#### 3. `window.onload`
 
 **Purpose**: Executes the `deleteFolder()` function when the window loads.
 
